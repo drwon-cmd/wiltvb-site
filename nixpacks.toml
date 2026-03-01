@@ -3,8 +3,6 @@ nixPkgs = ["nginx"]
 
 [phases.build]
 cmds = [
-  "mkdir -p /app",
-  "cp -r . /app",
   "cp nginx.conf /etc/nginx/conf.d/default.conf"
 ]
 
