@@ -749,19 +749,27 @@
     /* ─── CHATBOT ─── */
     #chat-btn {
       position: fixed; bottom: 28px; right: 28px;
-      width: 56px; height: 56px;
-      background: var(--teal); color: #060a14;
-      border-radius: 50%; border: none; font-size: 22px; cursor: pointer;
-      z-index: 9999; box-shadow: 0 4px 20px rgba(62,207,197,0.38);
-      display: flex; align-items: center; justify-content: center;
+      height: 52px; padding: 0 22px;
+      background: #F5A623; color: #fff;
+      border-radius: 100px; border: none;
+      font-family: 'Syne', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; z-index: 9999;
+      box-shadow: 0 4px 20px rgba(245,166,35,0.45);
+      display: flex; align-items: center; gap: 10px;
       transition: transform .2s, box-shadow .2s;
+      white-space: nowrap;
     }
-    #chat-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(62,207,197,0.55); }
+    #chat-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,166,35,0.6); }
     #chat-frame {
-      position: fixed; bottom: 96px; right: 28px;
+      position: fixed; bottom: 92px; right: 28px;
       width: 390px; height: 620px;
       border: none; border-radius: 18px; z-index: 9999;
       box-shadow: 0 12px 48px rgba(0,0,0,.6); display: none;
+    }
+    @media (max-width: 960px) {
+      #chat-frame { width: calc(100vw - 32px); right: 16px; }
+      #chat-btn { right: 16px; bottom: 16px; }
     }
 
     /* ─── SCROLL REVEAL ─── */
@@ -1161,13 +1169,13 @@
     <h2 class="s-h2 sr d1">PARTNERS</h2>
     <p class="s-body sr d2">We work with leading institutions across the startup ecosystem — in Korea, Singapore, and beyond.</p>
     <div class="partners-strip sr d3">
-      <div class="plogo"><div class="plogo-text">KOCHAM<br>Singapore</div></div>
-      <div class="plogo"><div class="plogo-text">KOTRA</div></div>
-      <div class="plogo"><div class="plogo-text">Entrepreneur<br>First</div></div>
-      <div class="plogo"><div class="plogo-text">NUS<br>Enterprise</div></div>
-      <div class="plogo"><div class="plogo-text">AWS<br>Startups</div></div>
-      <div class="plogo"><div class="plogo-text">Spring<br>Singapore</div></div>
-      <div class="plogo"><div class="plogo-text">K-Startup<br>Center</div></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
+      <div class="plogo"></div>
     </div>
   </div>
 </section>
@@ -1216,7 +1224,7 @@
     <div>
       <div class="ft-col-h">Contact</div>
       <ul class="ft-links">
-        <li><a href="/cdn-cgi/l/email-protection#d7bfb2bbbbb897a0bebba3a1b5f9b4b8ba"><span class="__cf_email__" data-cfemail="ee868b828281ae9987829a988cc08d8183">[email&#160;protected]</span></a></li>
+        <li><a href="mailto:cs@wiltvb.com">cs@wiltvb.com</a></li>
         <li><a href="contact.html">Get in Touch →</a></li>
       </ul>
     </div>
@@ -1228,7 +1236,7 @@
 </footer>
 
 <!-- CHATBOT -->
-<button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬</button>
+<button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬 Ask me anything</button>
 <iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
