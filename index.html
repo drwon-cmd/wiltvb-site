@@ -1243,7 +1243,8 @@
   const chatBtn = document.getElementById('chat-btn');
   const chatFrame = document.getElementById('chat-frame');
   chatBtn.addEventListener('click', () => {
-    chatFrame.style.display = chatFrame.style.display === 'block' ? 'none' : 'block';
+    const isHidden = chatFrame.style.display === 'none' || chatFrame.style.display === '';
+    chatFrame.style.display = isHidden ? 'block' : 'none';
   });
 
   // ── COUNTER ANIMATION (stat band numbers)
