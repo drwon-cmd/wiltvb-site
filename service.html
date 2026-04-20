@@ -337,8 +337,7 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<nav id="main-nav">
   <a class="nav-brand" href="/">
     <div class="nav-logo">
       <img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/>
@@ -346,28 +345,25 @@
     <span class="nav-wordmark">Wilt Venture Builder</span>
   </a>
   <ul class="nav-links">
-    <li><a href="/#why">Studio Model</a></li>
     <li><a href="/#how">How We Build</a></li>
-    <li><a href="/#portfolio">Portfolio</a></li>
-    <li><a href="/#partners">Partners</a></li>
-    <li><a href="service.html" class="active">Services</a></li>
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/service.html" class="active">In-Bound Services</a></li>
+    <li><a href="/news.html">News</a></li>
   </ul>
-  <a class="nav-cta" href="contact.html">Get in Touch</a>
+  <a class="nav-cta" href="/contact.html">Get in Touch</a>
   <button class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href="/">How We Build</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="service.html">In-Bound Services</a>
-  <a href="news.html">News</a>
-  <a class="mobile-cta" href="contact.html">Get in Touch</a>
+  <a href="/#how" onclick="closeMobileMenu()">How We Build</a>
+  <a href="/portfolio.html">Portfolio</a>
+  <a href="/service.html">In-Bound Services</a>
+  <a href="/news.html">News</a>
+  <a class="mobile-cta" href="/contact.html">Get in Touch</a>
 </div>
 
-<!-- HERO -->
 <div class="svc-hero">
   <div class="svc-hero-inner">
     <span class="s-eyebrow">What We Offer</span>
@@ -376,12 +372,10 @@
   </div>
 </div>
 
-<!-- SERVICES -->
 <section class="services-section">
   <div class="services-inner">
     <div class="svc-grid">
 
-      <!-- SERVICE 1 -->
       <div class="svc-card">
         <div class="svc-num">01</div>
         <span class="svc-icon">🔍</span>
@@ -398,7 +392,6 @@
         <a class="svc-cta" href="https://wvb-wondaero.github.io/seogeo/" target="_blank">Enquire Now →</a>
       </div>
 
-      <!-- SERVICE 2 -->
       <div class="svc-card">
         <div class="svc-num">02</div>
         <span class="svc-icon">📡</span>
@@ -412,14 +405,13 @@
           <li>Competitor and market movement tracking</li>
           <li>Weekly digest reports delivered to your inbox</li>
         </ul>
-        <a class="svc-cta" href="contact.html">Enquire Now →</a>
+        <a class="svc-cta" href="/contact.html">Enquire Now →</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- WHY US -->
 <section class="why-section">
   <div class="why-inner">
     <span class="s-eyebrow">Why Wilt</span>
@@ -444,18 +436,16 @@
   </div>
 </section>
 
-<!-- CTA BAND -->
 <div class="cta-band">
   <div class="cta-inner">
     <div>
       <h2>INTERESTED IN OUR SERVICES?</h2>
       <p>Reach out and let's discuss how we can support your growth.</p>
     </div>
-    <a class="btn-dark" href="contact.html">Talk to Our Team →</a>
+    <a class="btn-dark" href="/contact.html">Talk to Our Team →</a>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="ft-top">
     <div>
@@ -469,11 +459,11 @@
     <div>
       <div class="ft-col-h">Navigate</div>
       <ul class="ft-links">
-        <li><a href="/#why">Studio Model</a></li>
         <li><a href="/#how">How We Build</a></li>
-        <li><a href="/#portfolio">Portfolio</a></li>
         <li><a href="/#partners">Partners</a></li>
-        <li><a href="service.html">Services</a></li>
+        <li><a href="/portfolio.html">Portfolio</a></li>
+        <li><a href="/service.html">In-Bound Services</a></li>
+        <li><a href="/news.html">News</a></li>
       </ul>
     </div>
     <div>
@@ -486,7 +476,7 @@
       <div class="ft-col-h">Contact</div>
       <ul class="ft-links">
         <li><a href="mailto:cs@wiltvb.com">cs@wiltvb.com</a></li>
-        <li><a href="contact.html">Get in Touch →</a></li>
+        <li><a href="/contact.html">Get in Touch →</a></li>
       </ul>
     </div>
   </div>
@@ -496,7 +486,6 @@
   </div>
 </footer>
 
-<!-- CHATBOT -->
 <button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬 Ask me anything</button>
 <iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
 
@@ -504,11 +493,20 @@
   // ── MOBILE HAMBURGER MENU
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  hamburgerBtn.addEventListener('click', function() {
-    hamburgerBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-  });
+
+  if(hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', function() {
+      hamburgerBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+
+  function closeMobileMenu() {
+    if(hamburgerBtn) hamburgerBtn.classList.remove('active');
+    if(mobileMenu) mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 </script>
 </body>
 </html>
