@@ -93,31 +93,32 @@
   </style>
 </head>
 <body>
-<nav>
+
+<nav id="main-nav">
   <a class="nav-brand" href="/">
     <div class="nav-logo"><img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/></div>
     <span class="nav-wordmark">Wilt Venture Builder</span>
   </a>
   <ul class="nav-links">
-    <li><a href="/">How We Build</a></li>
-    <li><a href="portfolio.html" class="active">Portfolio</a></li>
-    <li><a href="service.html">In-Bound Services</a></li>
-    <li><a href="news.html">News</a></li>
+    <li><a href="/#how">How We Build</a></li>
+    <li><a href="/portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="/service.html">In-Bound Services</a></li>
+    <li><a href="/news.html">News</a></li>
   </ul>
-  <a class="nav-cta" href="contact.html">Get in Touch</a>
+  <a class="nav-cta" href="/contact.html">Get in Touch</a>
   <button class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href="/">How We Build</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="service.html">In-Bound Services</a>
-  <a href="news.html">News</a>
-  <a class="mobile-cta" href="contact.html">Get in Touch</a>
+  <a href="/#how" onclick="closeMobileMenu()">How We Build</a>
+  <a href="/portfolio.html">Portfolio</a>
+  <a href="/service.html">In-Bound Services</a>
+  <a href="/news.html">News</a>
+  <a class="mobile-cta" href="/contact.html">Get in Touch</a>
 </div>
+
 <div class="hero">
   <div class="hero-inner">
     <span class="eyebrow">Portfolio</span>
@@ -173,7 +174,7 @@
       <h2>HAVE A VENTURE IDEA?</h2>
       <p>We're always looking for bold founders to build with.</p>
     </div>
-    <a class="btn-dark" href="contact.html">Get in Touch →</a>
+    <a class="btn-dark" href="/contact.html">Get in Touch →</a>
   </div>
 </div>
 <footer>
@@ -189,9 +190,9 @@
       <ul class="ft-links">
         <li><a href="/#how">How We Build</a></li>
         <li><a href="/#partners">Partners</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="service.html">In-Bound Services</a></li>
-        <li><a href="news.html">News</a></li>
+        <li><a href="/portfolio.html">Portfolio</a></li>
+        <li><a href="/service.html">In-Bound Services</a></li>
+        <li><a href="/news.html">News</a></li>
       </ul>
     </div>
     <div>
@@ -204,7 +205,7 @@
       <div class="ft-col-h">Contact</div>
       <ul class="ft-links">
         <li><a href="mailto:cs@wiltvb.com">cs@wiltvb.com</a></li>
-        <li><a href="contact.html">Get in Touch →</a></li>
+        <li><a href="/contact.html">Get in Touch →</a></li>
       </ul>
     </div>
   </div>
@@ -216,21 +217,29 @@
 <button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬 Ask me anything</button>
 <iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
 <script>
-  const nav = document.querySelector('nav');
+  const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
+    if(nav) nav.classList.toggle('scrolled', window.scrollY > 20);
   });
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-</script>
-<script>
+  if(nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+
   // ── MOBILE HAMBURGER MENU
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  hamburgerBtn.addEventListener('click', function() {
-    hamburgerBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-  });
+
+  if(hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', function() {
+      hamburgerBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+
+  function closeMobileMenu() {
+    if(hamburgerBtn) hamburgerBtn.classList.remove('active');
+    if(mobileMenu) mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 </script>
 </body>
 </html>
