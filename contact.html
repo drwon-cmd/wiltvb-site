@@ -55,8 +55,16 @@
       color: var(--w30); text-decoration: none;
       font-size: 12px; padding: 0 22px; height: 64px;
       display: flex; align-items: center; transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 22px; right: 22px; height: 1px;
+      background: var(--teal); transform: scaleX(0); transform-origin: left;
+      transition: transform .25s ease;
     }
     .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { transform: scaleX(1); }
     .nav-cta {
       font-family: 'Syne', sans-serif;
       font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
@@ -307,8 +315,7 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<nav id="main-nav">
   <a class="nav-brand" href="/">
     <div class="nav-logo">
       <img src="_assets/v11/logo.png" alt="Wilt Venture Builder"/>
@@ -317,36 +324,32 @@
   </a>
   <ul class="nav-links">
     <li><a href="/#how">How We Build</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="service.html">In-Bound Services</a></li>
-    <li><a href="news.html">News</a></li>
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/service.html">In-Bound Services</a></li>
+    <li><a href="/news.html">News</a></li>
   </ul>
-  <a class="nav-cta" href="contact.html">Get in Touch</a>
+  <a class="nav-cta" href="/contact.html">Get in Touch</a>
   <button class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href="/">How We Build</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="service.html">In-Bound Services</a>
-  <a href="news.html">News</a>
-  <a class="mobile-cta" href="contact.html">Get in Touch</a>
+  <a href="/#how" onclick="closeMobileMenu()">How We Build</a>
+  <a href="/portfolio.html">Portfolio</a>
+  <a href="/service.html">In-Bound Services</a>
+  <a href="/news.html">News</a>
+  <a class="mobile-cta" href="/contact.html">Get in Touch</a>
 </div>
 
-<!-- HERO -->
 <div class="contact-hero">
   <h1>LET'S BUILD SOMETHING<br><em>EXTRAORDINARY.</em></h1>
   <p>We're always looking for bold founders with the drive to scale globally.</p>
 </div>
 
-<!-- MAIN -->
 <div style="background: var(--black); padding: 0 52px;">
   <div class="contact-main">
 
-    <!-- FORM -->
     <div class="form-side">
       <div class="form-title">Send us a message</div>
       <form id="contact-form" onsubmit="handleSubmit(event)">
@@ -388,7 +391,6 @@
       </form>
     </div>
 
-    <!-- INFO -->
     <div class="info-side">
       <div class="info-title">Let's build something extraordinary.</div>
       <div class="info-desc">We're always looking for bold founders with the drive to scale globally. Reach out and let's explore how we can build together.</div>
@@ -427,13 +429,11 @@
   </div>
 </div>
 
-<!-- CTA BAND -->
 <div class="cta-band">
   <h2>LET'S SHAPE THE FUTURE — TOGETHER.</h2>
   <p>Get in touch with our team and let's start building something extraordinary.</p>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="ft">
     <div>
@@ -465,7 +465,6 @@
   </div>
 </footer>
 
-<!-- CHATBOT -->
 <button id="chat-btn" title="Chat with us" onclick="(function(){var f=document.getElementById('chat-frame');f.style.display=f.style.display==='block'?'none':'block';})()">💬 Ask me anything</button>
 <iframe id="chat-frame" src="https://drwon-advisory-chatbot-production.up.railway.app/" title="Chatbot"></iframe>
 
@@ -496,11 +495,20 @@
   // ── MOBILE HAMBURGER MENU
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  hamburgerBtn.addEventListener('click', function() {
-    hamburgerBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-  });
+
+  if(hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', function() {
+      hamburgerBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+
+  function closeMobileMenu() {
+    if(hamburgerBtn) hamburgerBtn.classList.remove('active');
+    if(mobileMenu) mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 </script>
 </body>
 </html>
